@@ -31,7 +31,10 @@ const Home = () => {
           />
         </div>
 
-        <Card className="mt-6">
+        <h2 className="mt-6 mb-3 text-xs font-bold text-gray-400 uppercase">
+          Agendamentos
+        </h2>
+        <Card>
           <CardContent className="flex justify-between p-0">
             <div className="flex flex-col gap-2 pl-5">
               <Badge className="w-fit">Confirmado</Badge>
