@@ -1,4 +1,4 @@
-import { EyeIcon, FootprintsIcon, SearchIcon } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 import header from "./_components/header"
 import { Button } from "./_components/ui/button"
 import { Input } from "./_components/ui/input"
@@ -9,6 +9,7 @@ import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import { BarberShop } from "@prisma/client"
 import BarberShopItem from "./_components/barbershop-item"
+import { QuickSearchOptions } from "./_constants/quickSearch"
 
 const Home = async () => {
   // db connection
@@ -33,55 +34,17 @@ const Home = async () => {
         </div>
 
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-          <Button className="gap-2" variant="secondary">
-            <Image src="/icon-cabelo.svg" width={16} height={16} alt="Cabelo" />
-            Cabelo
-          </Button>
-
-          <Button className="gap-2" variant="secondary">
-            <Image src="/icon-barba.svg" width={16} height={16} alt="Barba" />
-            Barba
-          </Button>
-
-          <Button className="gap-2" variant="secondary">
-            <Image
-              src="/icon-acabamento.svg"
-              width={16}
-              height={16}
-              alt="Acabamento"
-            />
-            Acabamento
-          </Button>
-
-          <Button className="gap-2" variant="secondary">
-            <Image
-              src="/icon-sobrancelha.svg"
-              width={16}
-              height={16}
-              alt="Sobrancelha"
-            />
-            Sobrancelha
-          </Button>
-
-          <Button className="gap-2" variant="secondary">
-            <Image
-              src="/icon-massagem.svg"
-              width={16}
-              height={16}
-              alt="Massagem"
-            />
-            Massagem
-          </Button>
-
-          <Button className="gap-2" variant="secondary">
-            <Image
-              src="/icon-hidratacao.svg"
-              width={16}
-              height={16}
-              alt="Hidratação"
-            />
-            Hidratação
-          </Button>
+          {QuickSearchOptions.map((option) => (
+            <Button className="gap-2" variant="secondary" key={option.title}>
+              <Image
+                src={option.imageUrl}
+                alt={option.title}
+                width={16}
+                height={16}
+              />
+              {option.title}
+            </Button>
+          ))}
         </div>
 
         <div className="relative mt-6 h-[150px] w-full">
