@@ -78,7 +78,7 @@ const Home = async () => {
       </div>
 
       <footer>
-        <Card className="p-0">
+        <Card className="rounded-0xl p-0">
           <CardContent className="px-5 py-6">
             <p className="text-sm text-gray-400">
               © 2023 Copyright <span className="font-bold">FSW Barber</span>
