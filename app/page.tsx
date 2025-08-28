@@ -1,7 +1,5 @@
-import { SearchIcon } from "lucide-react"
 import header from "./_components/header"
 import { Button } from "./_components/ui/button"
-import { Input } from "./_components/ui/input"
 import Image from "next/image"
 import { db } from "./_lib/prisma"
 import BarberShopItem from "./_components/barbershop-item"
