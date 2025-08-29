@@ -13,6 +13,16 @@ interface BarbershopPageProps {
   params: Promise<{ id: string }>
 }
 
+// helper pra serializar services
+function serializeService(service: any) {
+  return {
+    ...service,
+    price: Number(service.price), // Decimal -> number
+    createdAt: service.createdAt.toISOString(),
+    updatedAt: service.updatedAt.toISOString(),
+  }
+}
+
 const BarbershopPage = async ({ params }: BarbershopPageProps) => {
   const { id } = await params
 
@@ -25,12 +35,20 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     return notFound()
   }
 
+  // gera uma versão "plain object" serializável
+  const plainBarbershop = {
+    ...barbershop,
+    services: barbershop.services.map(serializeService),
+    createdAt: barbershop.createdAt.toISOString(),
+    updatedAt: barbershop.updatedAt.toISOString(),
+  }
+
   return (
     <div>
       <div className="relative h-[250px] w-full">
         <Image
-          alt={barbershop?.name}
-          src={barbershop?.imageUrl}
+          alt={plainBarbershop.name}
+          src={plainBarbershop.imageUrl}
           fill
           className="object-cover"
         />
@@ -61,10 +79,10 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       </div>
 
       <div className="border-b border-solid p-5">
-        <h1 className="mb-3 text-xl font-bold">{barbershop?.name}</h1>
+        <h1 className="mb-3 text-xl font-bold">{plainBarbershop.name}</h1>
         <div className="mb-2 flex items-center gap-2">
           <MapPinIcon className="fill-primary text-primary" size={18} />
-          <p className="text-sm">{barbershop?.address}</p>
+          <p className="text-sm">{plainBarbershop.address}</p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -77,25 +95,26 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         <h2 className="fonte-bold text-xs text-gray-400 uppercase">
           Sobre nós
         </h2>
-        <p className="text-justify text-sm">{barbershop?.description}</p>
+        <p className="text-justify text-sm">{plainBarbershop.description}</p>
       </div>
 
       <div className="space-y-3 border-b border-solid p-5">
         <h2 className="fonte-bold text-xs text-gray-400 uppercase">Serviços</h2>
         <div className="space-y-3">
-          {barbershop.services.map((service) => (
+          {plainBarbershop.services.map((service) => (
             <ServiceItem
               key={service.id}
               service={service}
-              barberShop={{ name: barbershop.name }}
+              barberShop={{ name: plainBarbershop.name }}
             />
           ))}
         </div>
       </div>
 
       <div className="space-y-3 p-5">
-        {barbershop.phones.map((phone) => (
-          <PhoneItem key={phone} phone={phone} />
+        {/* usando index para garantir key unica */}
+        {plainBarbershop.phones.map((phone, index) => (
+          <PhoneItem key={`${phone}-${index}`} phone={phone} />
         ))}
       </div>
     </div>
