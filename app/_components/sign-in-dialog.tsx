@@ -1,10 +1,5 @@
 import { signIn } from "next-auth/react"
-import {
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog"
+import { DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog"
 import { Button } from "./ui/button"
 import Image from "next/image"
 

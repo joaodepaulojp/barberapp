@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import SignInDialog from "./sign-in-dialog"
 
 const SidebarSheet = () => {
@@ -82,16 +82,18 @@ const SidebarSheet = () => {
         ))}
       </div>
 
-      <div className="flex flex-col gap-2 py-4">
-        <Button
-          className="justify-start gap-2"
-          variant="ghost"
-          onClick={handleLogOutClick}
-        >
-          <LogOutIcon size={18} />
-          Sair da Conta
-        </Button>
-      </div>
+      {data?.user && (
+        <div className="flex flex-col gap-2 py-4">
+          <Button
+            className="justify-start gap-2"
+            variant="ghost"
+            onClick={handleLogOutClick}
+          >
+            <LogOutIcon size={18} />
+            Sair da Conta
+          </Button>
+        </div>
+      )}
     </SheetContent>
   )
 }
