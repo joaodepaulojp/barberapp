@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Tokens globais de tema */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -48,7 +48,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Dark mode com cores antigas convertidas para HSL */
 .dark {
   --background: hsl(225 9% 9%);
   --foreground: hsl(210 40% 98%);
@@ -96,7 +95,6 @@
   --radius: 0.5rem;
 }
 
-/* Base styles do Tailwind */
 @layer base {
   * {
     @apply border-border antialiased;
