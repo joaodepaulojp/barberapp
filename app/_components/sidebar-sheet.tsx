@@ -34,10 +34,10 @@ const SidebarSheet = () => {
           </div>
         ) : (
           <>
-            <h2 className="ml-3 font-bold">Olá, faça seu login!</h2>
+            <h2 className="ml-4 font-bold">Olá, faça seu login!</h2>
             <Dialog>
               <DialogTrigger asChild>
-                <Button size="icon" className="mr-3">
+                <Button size="icon" className="mr-4">
                   <LogInIcon />
                 </Button>
               </DialogTrigger>
