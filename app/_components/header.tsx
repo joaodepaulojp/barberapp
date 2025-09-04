@@ -14,7 +14,7 @@ const header = () => {
           <Image src="/logo-fsw.png" alt="FSW Barber" height={18} width={120} />
         </Link>
 
-        <p className="text-gray-600">
+        <p className="text-xs text-gray-600">
           Desenvolved by{" "}
           <span className="font-bold text-gray-400">João de Paulo</span>
           <br />
